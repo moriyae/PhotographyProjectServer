@@ -101,7 +101,7 @@ const updateImgSelected= async(req, res)=>{
     } 
     if(ans.success)
     res.status(200).send({ 
-      message: "update succese",
+      message: "update succeeded",
     });
     else
     res.send(undefined)
