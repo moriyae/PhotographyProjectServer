@@ -131,7 +131,7 @@ const mail =async (req, res)  => {
 
   var result =await transporter.sendMail({
         from: '4321vz@gmail.com',
-        to: 'moriyae2000@gmail.com',
+        to: req.body.mail,
         subject: req.body.sub,
         text: req.body.txt
   });

@@ -72,12 +72,12 @@ const mail = (details) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'estersh@tzlev.com',
-            pass: 'e&s98765'
+            user: 'moriyae2000@gmail.com',
+            pass: '211341086'
         }
     });
     var mailOptions = {
-        from: 'estersh@tzlev.com',
+        from: 'moriyae2000@gmail.com',
         to: details.mail,
         subject: details.sub,
         text: details.txt
