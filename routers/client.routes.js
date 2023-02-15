@@ -41,11 +41,13 @@ router.post('/downLoad', async (req, res) => {
 
 
     console.log(__dirname.substring(0,33))
+    var path=require('path').resolve(__dirname, '..');
     console.log(__dirname)
     if(req.body.length>1){
         let zip = new AdmZip();  
-        req.body.forEach(n=>{   
-            files=my_path.join(__dirname.substring(0,33),`./upLoads/${sess.idEv}/${n}`)
+        req.body.forEach(n=>{  
+
+            files=my_path.join(path,`./upLoads/${sess.idEv}/${n}`)
             zip.addLocalFile(files);
         })
 
@@ -61,7 +63,7 @@ router.post('/downLoad', async (req, res) => {
     }
 
     else{
-        let file=my_path.join(__dirname.substring(0,33),`./upLoads/${sess.idEv}/${req.body[0].Name}`);
+        let file=my_path.join(path,`./upLoads/${sess.idEv}/${req.body[0].Name}`);
         res.sendFile(file)
     }
 })
