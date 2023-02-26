@@ -126,12 +126,8 @@ app.post('/login', async (req, res) => {
   console.log(ans)
 
   if (!ans.success) {   
-        res.status(500).send(ans.data);
-      
+        res.status(500).send(ans.data);    
   }
-  // console.log(req.sessionID, 'login')
-
-  
   else {
     let sess = req.session;
     if (ans.data[0] != undefined){
@@ -167,10 +163,6 @@ app.post('/exit', async (req, res) => {
   req.session.destroy()
   console.log(req.session, 's2')
   res.send(true)
-})
-
-app.get('/aa', async (req, res) => {
-  console.log("ads")
 })
 
 app.use('/uploads', ex.static('./upLoads'));
