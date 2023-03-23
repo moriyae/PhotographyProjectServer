@@ -120,11 +120,9 @@ app.post('/sendMail', controller.mail);
 
 app.post('/login', async (req, res) => {
   console.log(req.body)
-
   let u = new get('clients')
   let ans = await u.findOne(`username = '${req.body.username.trim()}' and UserPassword = '${req.body.password.trim()}' `)
   console.log(ans)
-
   if (!ans.success) {   
         res.status(500).send(ans.data);    
   }
@@ -146,6 +144,25 @@ app.post('/login', async (req, res) => {
   res.send(false)
 }
 })
+
+app.get('/getAllCategories', async (req, res) => {
+  let categories = new get('Categories')
+  let ans = await categories.findAll('*')
+  if (ans.success)
+      res.send(ans.data)
+  else
+    res.send(undefined)
+})
+
+// app.get('/getAllCategoriesWithImages', async (req, res) => {
+//   let cat = new get('Categories') ;
+//   let query='Categories inner join AllEvents on Categories.Id = AllEvents.Category inner join AllPictures on AllPictures.EventId = AllEvents.Id where AllPictures.isPublished = 1 '
+//   let ans = await cat.findInnerJoin('Categories.id, Categories.Name, AllPictures.PathImg',`${query}`)
+//   if (ans.success)
+//       res.send(ans.data)
+//   else
+//     res.send(undefined)
+// })
 
 app.use((req, res, next) => {
   let sess = req.session;

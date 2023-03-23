@@ -134,11 +134,24 @@ router.post('/addEvent', async (req, res) => {
 
 
 router.get('/getAllEvents',async (req,res)=>{
-  console.log('gatall')
+  console.log('getall')
   let events = new get('AllEvents')
   let ans = await events.findAll('*')
   console.log(ans)
   console.log(events)
+  if (ans.success)
+      res.send(ans.data)
+  else
+  res.send(undefined)
+})
+
+router.get('/getAllCategories',async (req,res)=>{
+  console.log("sgdfgdsf")
+ 
+  let categories = new get('Categories')
+  let ans = await events.findAll('*')
+  console.log(ans)
+  console.log(categories)
   if (ans.success)
       res.send(ans.data)
   else
