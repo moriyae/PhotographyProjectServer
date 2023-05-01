@@ -204,6 +204,29 @@ router.get('/deletingAnEvent/:eventId', async (req, res) => {
   }
 })
 
+router.post('/addCategory',async (req, res) => {
+  let categoryName=req.body.Name;
+  let a1 = new add('Categories')
+  let t1 = await a1.addOne('Name', `N'${categoryName}'`)
+
+  if (t1.success){
+
+    //כשמוסיפים קטגוריה חדשה נוצרת תיקיה עם קוד הקטגוריה לתמונות מפורסמות
+    fs.mkdir(path, (error) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("New Directory created successfully !!");
+      }
+    });
+    res.send(true)
+  }
+  else
+    res.send(false)
+
+
+})
+
 router.post('/deletingImg', async (req, res) => {
   let i = req.body.id
   console.log(i)

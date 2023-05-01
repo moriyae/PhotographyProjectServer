@@ -18,7 +18,7 @@ module.exports = function MyObject(col) {
     this.addOne = async (fields, values) => {
         try {
             let connection = await sql.connect(config)
-
+            console.log(`insert into ${table} (${fields}) values (${values}) `)
             let result = await connection.request().query(`insert into ${table} (${fields}) values (${values}) `)
 
             return {success: true, data: result};

@@ -72,6 +72,8 @@ console.log(ans);
   res.send(undefined)
 })
 
+app.post('/changePass', controller.changePass);
+
 app.get("/getAll", async function(req, res){
   console.log("file");
   var files   = [];

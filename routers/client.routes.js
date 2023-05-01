@@ -99,6 +99,41 @@ router.post('/sendMail', async (req, res) => {
     res.send(true)
 })
 
+router.post('/copyImg', async (req, res) => {
+    let events = new get('AllEvents')
+    let ans1 = await events.findOne(`Id='${req.body.EventId}'`)     
+    let categories = new get('Categories')
+    let ans2 = await categories.findOne(`Id='${ans1.data[0].Category}'`)        
+    var categoryId=ans2.data[0].Id;
+    console.log(categoryId)
+    fs.copyFile((my_path.join('upLoads/' +req.body.EventId +`/${req.body.Name}`)),
+                 my_path.join('images/'+categoryId+'/'+req.body.Name), (err) => {
+        if (err) throw err;
+    });
+    let up = new update('AllPictures')
+    let query=`isPublished=1`;
+    let a=await up.update(query, req.body.Id) 
+    res.send(true)
+})
+
+router.post('/deleteImgFromPublic', async (req, res) => {
+    let events = new get('AllEvents')
+    let ans1 = await events.findOne(`Id='${req.body.EventId}'`)     
+    let categories = new get('Categories')
+    let ans2 = await categories.findOne(`Id='${ans1.data[0].Category}'`)        
+    var categoryId=ans2.data[0].Id;
+    fs.unlink(my_path.join('images/'+categoryId+'/'+req.body.Name), (err) => {
+        if (err) throw err;
+    });
+    let up = new update('AllPictures')
+    let query=`isPublished=0`
+    let a=await up.update(query, req.body.Id) 
+    res.send(true)
+})
+
+
+
+
 router.post("/updateImgSelected", controller.updateImgSelected);
 router.get("/:id", controller.getListFiles);
 router.post('/changePass', controller.changePass);

@@ -112,7 +112,8 @@ const changePass= async(req, res)=>{
   console.log(req.body);
   let pass = new upd('Clients')  
   ans = await pass.update(`UserPassword = '${req.body.newPass}'`,req.body.id) 
-  console.log(ans);
+  console.log(ans+"hhhhh");
+  console.log(ans.success);
   if(ans.success)
   res.status(200).send(ans.data);
   else
