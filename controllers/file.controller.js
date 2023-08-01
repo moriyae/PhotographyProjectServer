@@ -125,13 +125,13 @@ const mail =async (req, res)  => {
   var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: '4321vz@gmail.com',
-      pass: 'odow qkub kowb mqkj'
+      user: 'shmuelphotographer1@gmail.com',
+      pass: 'pecp zgwg droz hwjo'
     }
   });
 
   var result =await transporter.sendMail({
-        from: '4321vz@gmail.com',
+        from: 'shmuelphotographer1@gmail.com',
         to: req.body.mail,
         subject: req.body.sub,
         text: req.body.txt
