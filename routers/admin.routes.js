@@ -26,6 +26,7 @@ if (!my_fs.existsSync('./upLoads'))
 router.post('/addNewClient', async (req, res) => {
   console.log(req.body)
   let id = req.body.id
+  console.log(id);
   let un = req.body.user.username
   let pass = req.body.user.password
   let phone = req.body.user.phone
@@ -45,6 +46,7 @@ router.post('/addNewClient', async (req, res) => {
   fields = ['UserName', 'UserPassword', 'Phone', 'FirstName', 'LastName','IsAdmin', 'Mail']
   values = [`N'${un}'`, `'${pass}'`, `'${phone}'`, `N'${firstname}'`, `N'${lastname}'`, `${IsAdmin}`, `'${mail}'`]
   if (id == -1) {
+    console.log(req.body.IsAdmin+'מוריה');
     let ge = new get('Clients')
     let allPasswords = await ge.findAll('UserPassword')
     if (!allPasswords.success) {
@@ -66,6 +68,7 @@ router.post('/addNewClient', async (req, res) => {
 
       let a = new add('Clients')
       let t1 = await a.addOne(fields, values)
+      console.log(t1.success);
       if (t1.success) {
         ans = {
           message: 'הלקוח נוסף בהצלחה'
