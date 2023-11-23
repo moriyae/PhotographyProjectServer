@@ -105,7 +105,6 @@ router.post('/copyImg', async (req, res) => {
     let categories = new get('Categories')
     let ans2 = await categories.findOne(`Id='${ans1.data[0].Category}'`)        
     var categoryId=ans2.data[0].Id;
-    console.log(categoryId)
     fs.copyFile((my_path.join('upLoads/' +req.body.EventId +`/${req.body.Name}`)),
                  my_path.join('images/'+categoryId+'/'+req.body.Name), (err) => {
         if (err) throw err;
